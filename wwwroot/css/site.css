@@ -1,6 +1,9 @@
 html {
-  font-size: 14px;
-  min-height: 100%;
+  margin: 0;
+  --color1: #002a46;
+  --color2: #a7d0cb;
+  --color3: #bdf4d7;
+  --color4: #676767;
 }
 
 @media (min-width: 768px) {
@@ -10,14 +13,37 @@ html {
 }
 
 body {
-  margin: 10px;
-  padding: 10px;
+  margin: 0;
 }
 
+h2, form{
+  margin: 1%;
+}
 
-footer {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1%;
+  position: relative;
+}
+
+header img {
+  position: absolute;
+  left: 44.5%;
+  height: 15em;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 18px;
+}
+
+header div svg{
+  height: 4em;
+  width: auto;
+  stroke-width: 2;
 }

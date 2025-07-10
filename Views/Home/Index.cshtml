@@ -3,11 +3,12 @@
 }
 
 
-<form method="post">
+<form method="post" action='@Url.Action("LogIn", "Home")'>
     <h2>@ViewBag.mensaje</h2>
-    <input type="text" name="nombre" placeholder="Nombre de usuario">
-    <input type="password" name="contraIntentada" placeholder="Contraseña">
-    <button type="submit" href='@Url.Action("LogIn", "Home")'>Iniciar Sesión</button>
-    <a>Olvidé mi contraseña</a>
+    <input type="text" name="nombre" placeholder="Nombre de usuario" autocomplete="off"><br>
+    <input type="password" name="contraIntentada" placeholder="Contraseña"><br>
+    <button type="submit">Iniciar Sesión</button><br>
+    <a>Olvidé mi contraseña</a><br>
     <a>No tengo una cuenta creada</a>
+
 </form>

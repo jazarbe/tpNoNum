@@ -4,13 +4,13 @@ public class Integrante{
     public string nombre { get; set; }
     public string contra { get; set; }
     public string email { get; set; }
-    public DateOnly fechaNac { get; set; }
+    public DateTime fechaNac { get; set; }
     public string telefono { get; set; }
     public string direccion { get; set; }
     public string rol { get; set; }
     public Integrante() { }
 
-    public Integrante(int id, string nombre, string contra, string email, DateOnly fechaNac, string telefono, string direccion, string rol)
+    public Integrante(int id, string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol)
     {
         this.id = id;
         this.nombre = nombre;

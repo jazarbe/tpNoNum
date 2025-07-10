@@ -15,9 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        BD miBd = new BD();
-        Integrante a = miBd.BuscarIntegrantePorId(1);
-        Console.WriteLine(a); 
+        ViewBag.mensaje = "¡Bienvenido!";
         return View();
     }
 
@@ -33,7 +31,7 @@ public class HomeController : Controller
             return View("Index");
         }
         else{
-            return RedirectToAction("Perfil", new { id = intentoIntegrante.id });
+            return RedirectToAction("Perfil", new { idSolicitado = intentoIntegrante.id });
         }
     }
 
