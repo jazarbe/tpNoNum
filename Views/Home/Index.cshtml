@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form method="post">
+    <h2>@ViewBag.mensaje</h2>
+    <input type="text" name="nombre" placeholder="Nombre de usuario">
+    <input type="password" name="contraIntentada" placeholder="Contraseña">
+    <button type="submit" href='@Url.Action("LogIn", "Home")'>Iniciar Sesión</button>
+    <a>Olvidé mi contraseña</a>
+    <a>No tengo una cuenta creada</a>
+</form>
