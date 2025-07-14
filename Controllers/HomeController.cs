@@ -31,14 +31,27 @@ public class HomeController : Controller
             return View("Index");
         }
         else{
+            HttpContext.Session.SetInt32("usuarioId", intentoIntegrante.id);
             return RedirectToAction("Perfil", new { idSolicitado = intentoIntegrante.id });
         }
+    }
+    public IActionResult LogOut()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index");
     }
 
     public IActionResult Perfil(int idSolicitado)
     {
+        int? idUsuario = HttpContext.Session.GetInt32("usuarioId");
+        if (idUsuario == null)
+        {
+            return RedirectToAction("Index");
+        }
+
         BD miBd = new BD();
-        Integrante intentoIntegrante = miBd.BuscarIntegrantePorId(idSolicitado);
+        Integrante intentoIntegrante = miBd.BuscarIntegrantePorId(idUsuario.Value);
+
         ViewBag.nombre = intentoIntegrante.nombre;
         ViewBag.contra = intentoIntegrante.contra; 
         ViewBag.email = intentoIntegrante.email;
@@ -46,6 +59,7 @@ public class HomeController : Controller
         ViewBag.telefono = intentoIntegrante.telefono;
         ViewBag.direccion = intentoIntegrante.direccion;
         ViewBag.rol = intentoIntegrante.rol;
+
         return View();
     }
 }

@@ -11,4 +11,6 @@
 <h1>Dirección: @ViewBag.direccion</h1> 
 <h1>Rol: @ViewBag.rol</h1> @* cambiar *@
 
-<button type="submit" action='@Url.Action("LogIn", "Home")'>Cerrar Sesión</button>
+<form action='@Url.Action("LogOut", "Home")' method="post">
+    <button type="submit">Cerrar sesión</button>
+</form>
