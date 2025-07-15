@@ -47,7 +47,8 @@ header div {
   font-size: 18px;
 }
 
-header div svg{
+header div svg, header div img{
+  position: inherit;
   height: 4em;
   width: auto;
   stroke-width: 2;

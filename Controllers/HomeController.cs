@@ -31,6 +31,14 @@ public class HomeController : Controller
             return View("Index");
         }
         else{
+            string rutaFoto = "/images/default.png";
+            switch(intentoIntegrante.nombre.ToLower())
+            {
+                case "jazarbe": rutaFoto = "/images/jaz.jfif"; break;
+                case "domix": rutaFoto = "/images/dami.jfif"; break;
+                case "jonina": rutaFoto = "/images/jona.jfif"; break;
+            }
+            HttpContext.Session.SetString("fotoPerfil", rutaFoto);
             HttpContext.Session.SetInt32("usuarioId", intentoIntegrante.id);
             return RedirectToAction("Perfil", new { idSolicitado = intentoIntegrante.id });
         }
