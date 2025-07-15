@@ -15,7 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.mensaje = "¡Bienvenido!";
+        ViewBag.mensaje = null;
         return View();
     }
 
@@ -61,5 +61,44 @@ public class HomeController : Controller
         ViewBag.rol = intentoIntegrante.rol;
 
         return View();
+    }
+    public IActionResult OlvideContra()
+    {
+        return View();
+    }
+
+    public IActionResult CambiarContra(string nombre, string nuevaContra)
+    {
+        BD miBd = new BD();
+        Integrante integrante = miBd.BuscarIntegrantePorNombre(nombre);
+        if (integrante == null)
+        {
+            ViewBag.mensaje = "El usuario no existe";
+            return View("OlvideContrasenia");
+        }
+
+        miBd.CambiarContra(nombre, nuevaContra);
+
+        ViewBag.mensaje = "Contraseña cambiada correctamente";
+        return View("Index");
+    }
+    public IActionResult SignIn()
+    {
+        return View();
+    }
+    public IActionResult CrearCuenta(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol)
+    {
+        BD miBd = new BD();
+
+        if (miBd.BuscarIntegrantePorNombre(nombre) != null)
+        {
+            ViewBag.mensaje = "El nombre de usuario ya existe";
+            return View("SignIn");
+        }
+
+        miBd.AgregarIntegrante(nombre, contra, email, fechaNac, telefono, direccion, rol);
+
+        ViewBag.mensaje = "Cuenta creada correctamente";
+        return View("Index");
     }
 }

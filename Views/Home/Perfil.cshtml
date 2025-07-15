@@ -1,16 +1,18 @@
 @{
     ViewData["Title"] = "Perfil";
 }
-@* hacer tabla -- torta fav 
-   hacer que c/u tenga una ft de perfil distinta *@
+@* hacer que c/u tenga una ft de perfil distinta 
+   nuevo atributo: grupo --> muestra los integrantes*@
 
-<h1>Nombre: @ViewBag.nombre</h1>
-<h1>Email: @ViewBag.email</h1>
-<h1>Fecha de nacimiento: @ViewBag.fechaNac.ToShortDateString()</h1>
-<h1>Teléfono: @ViewBag.telefono</h1>
-<h1>Dirección: @ViewBag.direccion</h1> 
-<h1>Rol: @ViewBag.rol</h1> @* cambiar *@
+<div class="perfil">
+    <h1>Nombre: @ViewBag.nombre</h1>
+    <h1>Email: @ViewBag.email</h1>
+    <h1>Fecha de nacimiento: @ViewBag.fechaNac.ToShortDateString()</h1>
+    <h1>Teléfono: @ViewBag.telefono</h1>
+    <h1>Dirección: @ViewBag.direccion</h1> 
+    <h1>Rol: @ViewBag.rol</h1>
 
-<form action='@Url.Action("LogOut", "Home")' method="post">
-    <button type="submit">Cerrar sesión</button>
-</form>
+    <form action='@Url.Action("LogOut", "Home")' method="post">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</div>

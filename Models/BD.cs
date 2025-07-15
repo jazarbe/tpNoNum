@@ -31,4 +31,22 @@ public class BD{
         }
         return integranteBuscado;
     }
+    public void CambiarContra(string nombre, string nuevaContra)
+    {
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "UPDATE Integrante SET contra = @pNuevaContra WHERE nombre = @pNombre";
+            connection.Execute(query, new { pNuevaContra = nuevaContra, pNombre = nombre });
+        }
+    }
+    public void AgregarIntegrante(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol)
+    {
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = @"INSERT INTO Integrante (nombre, contra, email, fechaNac, telefono, direccion, rol)
+                            VALUES (@pNombre, @pContra, @pEmail, @pFechaNac, @pTelefono, @pDireccion, @pRol)";
+                            
+            connection.Execute(query, new { pNombre = nombre, pContra = contra, pEmail = email, pFechaNac = fechaNac, pTelefono = telefono, pDireccion = direccion, pRol = rol });
+        }
+    }
 }

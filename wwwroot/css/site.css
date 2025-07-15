@@ -53,7 +53,7 @@ header div svg{
   stroke-width: 2;
 }
 
-.index{
+main{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,21 +66,24 @@ header div svg{
   border-radius: 20px;
 }
 
-.index form{
+main form{
   font-size: 3rem;
   text-align: center;
+  width: 100%;
 }
 
-.index form a {
+main form a {
   font-size: 1.5rem;
+  color: var(--color4);
 }
 
-.index h4{
+main h2{
   font-size: 2ex;
   text-align: center;
+  color: rgb(161, 3, 3);
 }
 
-.index input{
+main input{
   font-size: 1ex;
   text-align: center;
   padding: 0.5%;
@@ -89,12 +92,29 @@ header div svg{
   color: var(--color1);
 }
 
-.sub{
+button[type="submit"]{
   font-size: 1.3rem;
 }
 
-.index form input:hover{
-  box-shadow: 1px 5px 20px skyblue;
-  color: white;
+form input:hover, button[type="submit"]:hover{
+  box-shadow: 1px 5px 20px var(--color3);
   transition: all 0.5s ease;
+}
+
+.perfil{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.extra{
+  display: flex;
+  flex-direction: column;
+  padding: 3%
+}
+
+.extra h1{
+  margin: 0%;
 }
