@@ -1,8 +1,7 @@
 @{
     ViewData["Title"] = "Perfil";
 }
-@* hacer que c/u tenga una ft de perfil distinta 
-   nuevo atributo: grupo --> muestra los integrantes*@
+@* nuevo atributo: foto + grupo --> muestra los integrantes*@
 
 <div class="perfil">
     <h1>Nombre: @ViewBag.nombre</h1>
@@ -12,6 +11,14 @@
     <h1>Dirección: @ViewBag.direccion</h1> 
     <h1>Rol: @ViewBag.rol</h1>
 
+    <h1>Integrantes de tu grupo:</h1>
+    <ul>
+    @foreach(var integrante in (List<Integrante>)ViewBag.integrantesGrupo)
+    {
+        <li>- @integrante.nombre</li>
+    }
+    </ul>
+    
     <form action='@Url.Action("LogOut", "Home")' method="post">
         <button type="submit">Cerrar sesión</button>
     </form>

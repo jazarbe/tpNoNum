@@ -8,9 +8,12 @@ public class Integrante{
     public string telefono { get; set; }
     public string direccion { get; set; }
     public string rol { get; set; }
+    public string foto { get; set; }
+    public int idGrupo { get; set; }
+
     public Integrante() { }
 
-    public Integrante(int id, string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol)
+    public Integrante(int id, string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol, string foto, int idGrupo)
     {
         this.id = id;
         this.nombre = nombre;
@@ -20,5 +23,7 @@ public class Integrante{
         this.telefono = telefono;
         this.direccion = direccion;
         this.rol = rol;
+        this.foto = foto;
+        this.idGrupo = idGrupo;
     }
 }

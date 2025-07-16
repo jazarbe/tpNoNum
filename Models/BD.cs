@@ -39,14 +39,30 @@ public class BD{
             connection.Execute(query, new { pNuevaContra = nuevaContra, pNombre = nombre });
         }
     }
-    public void AgregarIntegrante(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol)
+    public void AgregarIntegrante(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol, string foto, int idGrupo)
     {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = @"INSERT INTO Integrante (nombre, contra, email, fechaNac, telefono, direccion, rol)
-                            VALUES (@pNombre, @pContra, @pEmail, @pFechaNac, @pTelefono, @pDireccion, @pRol)";
+            string query = @"
+                INSERT INTO Integrante 
+                (nombre, contra, email, fechaNac, telefono, direccion, rol, foto, idGrupo)
+                VALUES 
+                (@pNombre, @pContra, @pEmail, @pFechaNac, @pTelefono, @pDireccion, @pRol, @pFoto, @pIdGrupo)";
                             
-            connection.Execute(query, new { pNombre = nombre, pContra = contra, pEmail = email, pFechaNac = fechaNac, pTelefono = telefono, pDireccion = direccion, pRol = rol });
+            connection.Execute(query, new 
+            { pNombre = nombre, pContra = contra, pEmail = email, pFechaNac = fechaNac, pTelefono = telefono, pDireccion = direccion, pRol = rol, pFoto = foto, pIdGrupo = idGrupo});
         }
+    }
+    public List<Integrante> ObtenerIntegrantesPorGrupo(int idGrupo)
+    {
+        List<Integrante> integrantes = new List<Integrante>();
+
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT * FROM Integrante WHERE idGrupo = @pIdGrupo";
+            integrantes = connection.Query<Integrante>(query, new { pIdGrupo = idGrupo }).ToList();
+        }
+
+        return integrantes;
     }
 }

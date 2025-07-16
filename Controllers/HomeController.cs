@@ -67,7 +67,9 @@ public class HomeController : Controller
         ViewBag.telefono = intentoIntegrante.telefono;
         ViewBag.direccion = intentoIntegrante.direccion;
         ViewBag.rol = intentoIntegrante.rol;
-
+        List<Integrante> integrantesGrupo = miBd.ObtenerIntegrantesPorGrupo(intentoIntegrante.idGrupo);
+        ViewBag.integrantesGrupo = integrantesGrupo;
+        
         return View();
     }
     public IActionResult OlvideContra()
@@ -94,19 +96,33 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult CrearCuenta(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol)
+    public IActionResult CrearCuenta(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol, IFormFile foto, int idGrupo)
     {
         BD miBd = new BD();
 
         if (miBd.BuscarIntegrantePorNombre(nombre) != null)
         {
-            ViewBag.mensaje = "El nombre de usuario ya existe";
-            return View("SignIn");
+            ViewBag.mensaje = "El nombre de usuario ya existe.";
+            return View("Registro");
         }
 
-        miBd.AgregarIntegrante(nombre, contra, email, fechaNac, telefono, direccion, rol);
+        string nombreArchivo = "default.png";
 
-        ViewBag.mensaje = "Cuenta creada correctamente";
+        if (foto != null && foto.Length > 0)
+        {
+            string carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img");
+            nombreArchivo = Path.GetFileName(foto.FileName);
+            string rutaCompleta = Path.Combine(carpeta, nombreArchivo);
+
+            using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+            {
+                foto.CopyTo(stream);
+            }
+        }
+
+        miBd.AgregarIntegrante(nombre, contra, email, fechaNac, telefono, direccion, rol, nombreArchivo, idGrupo);
+
+        ViewBag.mensaje = "Cuenta creada correctamente.";
         return View("Index");
     }
 }

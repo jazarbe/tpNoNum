@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   background-color: var(--color3);
+  color: var(--color1);
 }
 
 h2, form{
@@ -84,6 +85,12 @@ main h2{
   color: rgb(161, 3, 3);
 }
 
+main ul li, main ul{
+  font-weight: 600;
+  display: inline;
+  margin-top: 0%
+}
+
 main input{
   font-size: 1ex;
   text-align: center;
@@ -95,6 +102,10 @@ main input{
 
 button[type="submit"]{
   font-size: 1.3rem;
+  color: var(--color1);
+  border: 2px solid var(--color1);
+  border-radius: 5px;
+  background-color: var(--color3);
 }
 
 form input:hover, button[type="submit"]:hover{
@@ -118,4 +129,8 @@ form input:hover, button[type="submit"]:hover{
 
 .extra h1{
   margin: 0%;
+}
+
+.extra input[type="number"]{
+  width: 30%;
 }
