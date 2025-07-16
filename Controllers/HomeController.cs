@@ -32,12 +32,7 @@ public class HomeController : Controller
         }
         else{
             string rutaFoto = "/images/default.png";
-            switch(intentoIntegrante.nombre.ToLower())
-            {
-                case "jazarbe": rutaFoto = "/images/jaz.jfif"; break;
-                case "domix": rutaFoto = "/images/dami.jfif"; break;
-                case "jonina": rutaFoto = "/images/jona.jfif"; break;
-            }
+            rutaFoto = "/images/" + intentoIntegrante.foto;
             HttpContext.Session.SetString("fotoPerfil", rutaFoto);
             HttpContext.Session.SetInt32("usuarioId", intentoIntegrante.id);
             return RedirectToAction("Perfil", new { idSolicitado = intentoIntegrante.id });
@@ -110,7 +105,7 @@ public class HomeController : Controller
 
         if (foto != null && foto.Length > 0)
         {
-            string carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img");
+            string carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
             nombreArchivo = Path.GetFileName(foto.FileName);
             string rutaCompleta = Path.Combine(carpeta, nombreArchivo);
 
