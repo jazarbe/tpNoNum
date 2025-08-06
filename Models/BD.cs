@@ -7,29 +7,29 @@ namespace tpNoNum.Models;
 public class BD{
     private static string _connectionString = @"Server=localhost;DataBase=Integrantes;Integrated Security=True;TrustServerCertificate=True;";
     public BD(){}
-    public List<Integrante> ConseguirIntegrantes(){
-        List<Integrante> integrantes = new List<Integrante>();
+    public List<Usuario> ConseguirUsuarios(){
+        List<Usuario> usuarios = new List<Usuario>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             string query = "SELECT * FROM Integrante";
-            integrantes = connection.Query<Integrante>(query).ToList();
+            usuarios = connection.Query<Usuario>(query).ToList();
         }
-        return integrantes;
+        return usuarios;
     }
-     public Integrante BuscarIntegrantePorId(int idBuscado){
-        Integrante integranteBuscado = null;
+     public Usuario BuscarUsuarioPorId(int idBuscado){
+        Usuario integranteBuscado = null;
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             string query = "SELECT * FROM Integrante WHERE id = @pIdBuscado";
-            integranteBuscado = connection.QueryFirstOrDefault<Integrante>(query, new {pIdBuscado = idBuscado});
+            integranteBuscado = connection.QueryFirstOrDefault<Usuario>(query, new {pIdBuscado = idBuscado});
         }
         return integranteBuscado;
     }
-    public Integrante BuscarIntegrantePorNombre(string nombreBuscado){
-        Integrante integranteBuscado = null;
+    public Usuario BuscarUsuarioPorUsername(string userBuscado){
+        Usuario usuarioBuscado = null;
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             string query = "SELECT * FROM Integrante WHERE nombre = @pnombreBuscado";
-            integranteBuscado = connection.QueryFirstOrDefault<Integrante>(query, new {pnombreBuscado = nombreBuscado});
+            usuarioBuscado = connection.QueryFirstOrDefault<Usuario>(query, new {pnombreBuscado = userBuscado});
         }
-        return integranteBuscado;
+        return usuarioBuscado;
     }
     public void CambiarContra(string nombre, string nuevaContra)
     {
@@ -39,7 +39,7 @@ public class BD{
             connection.Execute(query, new { pNuevaContra = nuevaContra, pNombre = nombre });
         }
     }
-    public void AgregarIntegrante(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol, string foto, int idGrupo)
+    public void AgregarUsuario(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol, string foto, int idGrupo)
     {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -53,16 +53,16 @@ public class BD{
             { pNombre = nombre, pContra = contra, pEmail = email, pFechaNac = fechaNac, pTelefono = telefono, pDireccion = direccion, pRol = rol, pFoto = foto, pIdGrupo = idGrupo});
         }
     }
-    public List<Integrante> ObtenerIntegrantesPorGrupo(int idGrupo)
-    {
-        List<Integrante> integrantes = new List<Integrante>();
+    // public List<Usuario> ObtenerIntegrantesPorGrupo(int idGrupo)
+    // {
+    //     List<Usuario> integrantes = new List<Usuario>();
 
-        using(SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            string query = "SELECT * FROM Integrante WHERE idGrupo = @pIdGrupo";
-            integrantes = connection.Query<Integrante>(query, new { pIdGrupo = idGrupo }).ToList();
-        }
+    //     using(SqlConnection connection = new SqlConnection(_connectionString))
+    //     {
+    //         string query = "SELECT * FROM Integrante WHERE idGrupo = @pIdGrupo";
+    //         integrantes = connection.Query<Usuario>(query, new { pIdGrupo = idGrupo }).ToList();
+    //     }
 
-        return integrantes;
-    }
+    //     return integrantes;
+    // }
 }

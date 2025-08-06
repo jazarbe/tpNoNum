@@ -21,7 +21,7 @@ public class HomeController : Controller
 
     public IActionResult LogIn(string nombre, string contraIntentada){
         BD miBd = new BD();
-        Integrante intentoIntegrante = miBd.BuscarIntegrantePorNombre(nombre);
+        Usuario intentoIntegrante = miBd.BuscarUsuarioPorUsername(nombre);
         if(intentoIntegrante == null){
             ViewBag.mensaje = "Nombre de usuario inexistente";
             return View("Index");
@@ -53,7 +53,7 @@ public class HomeController : Controller
         }
 
         BD miBd = new BD();
-        Integrante intentoIntegrante = miBd.BuscarIntegrantePorId(idUsuario.Value);
+        Usuario intentoIntegrante = miBd.BuscarUsuarioPorId(idUsuario.Value);
 
         ViewBag.nombre = intentoIntegrante.nombre;
         ViewBag.contra = intentoIntegrante.contra; 
@@ -62,8 +62,8 @@ public class HomeController : Controller
         ViewBag.telefono = intentoIntegrante.telefono;
         ViewBag.direccion = intentoIntegrante.direccion;
         ViewBag.rol = intentoIntegrante.rol;
-        List<Integrante> integrantesGrupo = miBd.ObtenerIntegrantesPorGrupo(intentoIntegrante.idGrupo);
-        ViewBag.integrantesGrupo = integrantesGrupo;
+        // List<Usuario> integrantesGrupo = miBd.ObtenerIntegrantesPorGrupo(intentoIntegrante.idGrupo);
+        // ViewBag.integrantesGrupo = integrantesGrupo;
         
         return View();
     }
@@ -75,7 +75,7 @@ public class HomeController : Controller
     public IActionResult CambiarContra(string nombre, string nuevaContra)
     {
         BD miBd = new BD();
-        Integrante integrante = miBd.BuscarIntegrantePorNombre(nombre);
+        Usuario integrante = miBd.BuscarUsuarioPorUsername(nombre);
         if (integrante == null)
         {
             ViewBag.mensaje = "El usuario no existe";
@@ -95,7 +95,7 @@ public class HomeController : Controller
     {
         BD miBd = new BD();
 
-        if (miBd.BuscarIntegrantePorNombre(nombre) != null)
+        if (miBd.BuscarUsuarioPorUsername(nombre) != null)
         {
             ViewBag.mensaje = "El nombre de usuario ya existe.";
             return View("Registro");
@@ -115,7 +115,7 @@ public class HomeController : Controller
             }
         }
 
-        miBd.AgregarIntegrante(nombre, contra, email, fechaNac, telefono, direccion, rol, nombreArchivo, idGrupo);
+        miBd.AgregarUsuario(nombre, contra, email, fechaNac, telefono, direccion, rol, nombreArchivo, idGrupo);
 
         ViewBag.mensaje = "Cuenta creada correctamente.";
         return View("Index");

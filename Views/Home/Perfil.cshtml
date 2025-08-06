@@ -11,13 +11,13 @@
     <h1>Dirección: @ViewBag.direccion</h1> 
     <h1>Rol: @ViewBag.rol</h1>
 
-    <h1>Integrantes de tu grupo:</h1>
+    <!-- <h1>Integrantes de tu grupo:</h1>
     <ul>
-    @foreach(var integrante in (List<Integrante>)ViewBag.integrantesGrupo)
+    @foreach(var integrante in (List<Usuario>)ViewBag.integrantesGrupo)
     {
         <li>- @integrante.nombre</li>
     }
-    </ul>
+    </ul> -->
     
     <form action='@Url.Action("LogOut", "Home")' method="post">
         <button type="submit">Cerrar sesión</button>
